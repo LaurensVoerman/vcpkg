@@ -3,7 +3,13 @@ Version: 3.6.4
 Homepage: https://github.com/openscenegraph/OpenSceneGraph
 Description:  The OpenSceneGraph is an open source high performance 3D graphics toolkit.
 Build-Depends: freetype, jasper, openexr, zlib, gdal, giflib, libjpeg-turbo, libpng, tiff, fontconfig
+Default-Features: collada, plugins
 
 Feature: collada
 Description: Support for Collada (.dae) files
 Build-Depends: collada-dom
+
+Feature: plugins
+Description: add all supported plugins
+Build-Depends: curl, laszip, sdl2, ffmpeg[avresample,ffmpeg,ffserver,ffplay,ffprobe,openssl,lzma,bzip2,vpx,x264,opencl,nonfree,gpl], nvtt, libgta, dcmtk
+
