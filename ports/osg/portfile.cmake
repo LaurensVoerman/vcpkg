@@ -10,6 +10,9 @@ vcpkg_from_github(
 	HEAD_REF master
     PATCHES
         collada.patch
+        ffmpeg_stdint.patch
+        OpenEXR.patch
+        dcmtk_include.patch
 )
 
 if(VCPKG_LIBRARY_LINKAGE STREQUAL "static")
@@ -18,8 +21,16 @@ else()
     set(OSG_DYNAMIC ON)
 endif()
 file(REMOVE ${SOURCE_PATH}/CMakeModules/FindSDL2.cmake)
+file(REMOVE ${SOURCE_PATH}/CMakeModules/FindOpenEXR.cmake)
+
+if(MSVC)
+    set(VCPKG_C_FLAGS "${VCPKG_C_FLAGS} /source-charset:.1252")
+    set(VCPKG_CXX_FLAGS "${VCPKG_CXX_FLAGS} /source-charset:.1252")
+endif()
+
 vcpkg_configure_cmake(
     SOURCE_PATH ${SOURCE_PATH}
+    NO_CHARSET_FLAG
     OPTIONS
         -DOSG_USE_UTF8_FILENAME=ON
 )

@@ -1,0 +1,20 @@
+diff --git a/src/osgPlugins/dicom/CMakeLists.txt b/src/osgPlugins/dicom/CMakeLists.txt
+index be8a9cc5a..9cb31d22b 100644
+--- a/src/osgPlugins/dicom/CMakeLists.txt
++++ b/src/osgPlugins/dicom/CMakeLists.txt
+@@ -1,8 +1,12 @@
+ IF  (DCMTK_FOUND)
+ 
+-    # note, we have to include a '/' in front of the directory string to prevent a CMake bug from ignoring the directory
+-    INCLUDE_DIRECTORIES(${DCMTK_ROOT_INCLUDE_DIR})
+-
++    IF( DCMTK_INCLUDE_DIRS )
++        INCLUDE_DIRECTORIES(${DCMTK_INCLUDE_DIRS})
++    ELSE()
++        # very old cmake? try DCMTK_ROOT_INCLUDE_DIR
++        # note, we have to include a '/' in front of the directory string to prevent a CMake bug from ignoring the directory
++        INCLUDE_DIRECTORIES(${DCMTK_ROOT_INCLUDE_DIR})
++    ENDIF()
+     SET(TARGET_SRC ReaderWriterDICOM.cpp )
+ 
+     LINK_LIBRARIES(${DCMTK_LIBRARIES} ${ZLIB_LIBRARIES})

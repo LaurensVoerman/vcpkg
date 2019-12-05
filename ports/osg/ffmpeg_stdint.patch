@@ -1,0 +1,13 @@
+diff --git a/CMakeModules/FindFFmpeg.cmake b/CMakeModules/FindFFmpeg.cmake
+index d548e7a98..028dccab7 100644
+--- a/CMakeModules/FindFFmpeg.cmake
++++ b/CMakeModules/FindFFmpeg.cmake
+@@ -96,7 +96,7 @@ ENDMACRO(FFMPEG_FIND)
+ SET(FFMPEG_ROOT "$ENV{FFMPEG_DIR}" CACHE PATH "Location of FFMPEG")
+ 
+ # find stdint.h
+-IF(MSVC)
++IF(MSVC_VERSION LESS 1600)
+ 
+     FIND_PATH(FFMPEG_STDINT_INCLUDE_DIR stdint.h
+         PATHS
