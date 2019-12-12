@@ -17,6 +17,7 @@ vcpkg_from_github(
     fix_clang_not_setting_modern_cplusplus.patch
     fix_install_ilmimf.patch
     fix_linux_static_library_names.patch
+    IMF_EXPORT_ImfOpenInputFile.patch
 )
 
 string(COMPARE EQUAL "${VCPKG_LIBRARY_LINKAGE}" "static" OPENEXR_BUILD_STATIC)
